@@ -23,7 +23,7 @@ app.get("/login", (req, res)=>{
     console.log("Error in query: ")
     console.log(err)
   }
-  console.log("Back from DB with resultL: ")
+  console.log("Back from DB with result: ")
   console.log(result.rows)
   const data = result.rows
   const username = data[0].username
@@ -37,7 +37,7 @@ app.get("/login", (req, res)=>{
 
 app.get('/', (req, res) => {
   console.log("You are in the root")
-  res.sendFile("login.html", {root:_dirname + "/public"})
+  res.sendFile("login.html", {root:__dirname + "/public"})
 })
 app.listen(app.get("port"), () => {console.log(`Listening on ${ PORT }`)})
 
