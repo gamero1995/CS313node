@@ -1,0 +1,34 @@
+.site-content{
+     margin: 0 auto;
+     max-width: 1500px;
+}
+.website-title{
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+}
+header{
+    background-color: rgb(245, 243, 243);
+    border-bottom: 1px solid black;
+    
+}
+
+body{
+    background-color: #e6e6e6;
+    margin: 0;
+}
+
+.site-content>section.sign-in{
+    display: block;
+    background-color: white;
+}
+.sign-in{
+    align-content: center;
+    text-align: center;
+}
+header,
+section,
+footer {
+    margin: 0;
+    padding: 1px; /* tweaked from 0 to 1px */
+}
