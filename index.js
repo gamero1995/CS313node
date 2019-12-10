@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
   console.log("You are in the root")
   res.sendFile("login.html", {root:__dirname + "/public"})
 })
+app.use('/loginPage',(req, res) => {
+  console.log("You are in the root")
+
+  res.sendFile("login.html", {root:__dirname + "/public"})  
+})
 app.get("/login", loginController.getAccountInformation);
 app.post("/create", loginController.addUserToDB);
 

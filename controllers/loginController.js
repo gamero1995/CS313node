@@ -15,11 +15,14 @@ function addUserToDB(req, res)
     var password = req.body.pass;
 
     console.log("Creating new user under:" + username)
-    res.json({success:true});
-
-    loginModels.addUSerInfoToDB(username, password)
-
-    alert("Account has been created");
+    
+    loginModels.addUSerInfoToDB(username, password, function(error,results){
+        if(error) {
+            console.log("ERROR!")
+        }
+        res.json(results)
+    
+    })
 }
 
 module.exports = {

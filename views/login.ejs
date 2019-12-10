@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>User Account Information</h1>
-    <p><%= username %></p>
-    <p><%= password %></p>
+    <div class="site-content">
+    <header>
+        <h1 class="website-title">
+            <%= username %> Recipe Book
+        </h1>
+    </header>
+    <section class="sign-in">
+        <h2>My recipes: </h2>
+        <form action="">
+            <h2>Add recipe</h2>
+            Recipe name: <input type="text"><br><br>
+            Recipe category: <br>
+            <input type="radio" name="category" value="Lunch"> Lunch<br>
+            <input type="radio" name="category" value="Dinner"> Dinner<br>
+            <input type="radio" name="category" value="Dessert"> Dessert<br><br>  
+            Ingredients: <br><textarea name="ingredients" id="ing" cols="30" rows="10"></textarea><br>
+            <br>
+            Youtube Video Link: <input type="text"><br>
+        </form>
+    </section>
+</div>
 </body>
 </html>

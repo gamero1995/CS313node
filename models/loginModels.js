@@ -18,7 +18,7 @@ function getUserInfoFromDB(user, pass, callback){
       username = data[0].username
       password = data[0].password
      
-      var params = {username: username, password: password}
+      var params = {username: user, password: pass}
       
       callback(null, params);
         }  
@@ -26,11 +26,21 @@ function getUserInfoFromDB(user, pass, callback){
 }
 
 
-function addUSerInfoToDB(user, pass){
+function addUSerInfoToDB(user, pass, callback){
 
-    var sql = "INSERT INTO db_users (username, password) VALUES (user, pass)"
+    // var sql = "INSERT INTO db_users (username, password) VALUES (user, pass)"
 
-    pool.query(sql);
+    pool.query('INSERT INTO db_users (username, password) VALUES ($1, $2)', [user, pass], function(err, result){
+        if (err){
+            console.log("Error in query: ")
+            console.log(err)
+          }
+    let params = {success: true}
+
+    callback(null, params)
+        //   result.send()
+    });
+
 }
 
 module.exports = {
