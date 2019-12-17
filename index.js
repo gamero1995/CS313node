@@ -22,8 +22,11 @@ app.use('/loginPage',(req, res) => {
 
   res.sendFile("login.html", {root:__dirname + "/public"})  
 })
+app.get("/login", loginController.getRecipes);
 app.get("/login", loginController.getAccountInformation);
 app.post("/create", loginController.addUserToDB);
+app.post("/addRecipe", recipeController.addRecipe);
+app.post("/delete", recipeController.deleteRecipe);
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')

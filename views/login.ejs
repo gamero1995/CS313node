@@ -6,27 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <title>Document</title>
 </head>
 <body>
     <div class="site-content">
     <header>
         <h1 class="website-title">
-            <%= username %> Recipe Book
+            My Recipe Book
         </h1>
     </header>
     <section class="sign-in">
         <h2>My recipes: </h2>
-        <form action="">
+        <div class="flex-container">
+            
+                <% for(var i=0; i< result.length; i++) {%>
+                    <div>
+                   <h2><%= result[i].recipe_name %></h2>
+                   <p><%= result[i].category %></p>
+                   <pre><%= result[i].ingredients %></pre>
+                   <p><%= result[i].direction %></p>
+                   <iframe width="250" height="150" src="https://www.youtube.com/embed/<%= result[i].youtube_link %>"></iframe>
+                   <form action="/delete" method="POST">
+                    <input type="hidden" name="id" value="<%= result[i].recipe_id%>">
+                    <input type="submit" value="delete">
+                </form>
+                    </div>
+                   <% } %>
+            
+        </div>
+        
+        <form id="myForm" action="/addRecipe" method="POST" >
             <h2>Add recipe</h2>
-            Recipe name: <input type="text"><br><br>
+            Recipe name: <input type="text" name="name"><br><br>
             Recipe category: <br>
             <input type="radio" name="category" value="Lunch"> Lunch<br>
             <input type="radio" name="category" value="Dinner"> Dinner<br>
             <input type="radio" name="category" value="Dessert"> Dessert<br><br>  
             Ingredients: <br><textarea name="ingredients" id="ing" cols="30" rows="10"></textarea><br>
             <br>
-            Youtube Video Link: <input type="text"><br>
+            Directions: <br><textarea name="directions" id="ing" cols="30" rows="10"></textarea><br>
+            <br>
+            Youtube Video ID (ex. <strong>91EbLwkdkV4</strong>): <br><input type="text" name="youtube"><br><br>
+            <input type="hidden" name="id" value="1" >
+            <input type="submit" value="submit">
+            <button type="reset" value="clear"> Clear </button>
+            <button onClick="window.location.reload();">Refresh Page</button>
         </form>
     </section>
 </div>

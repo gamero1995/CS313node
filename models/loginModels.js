@@ -3,7 +3,7 @@ const db_url = process.env.DATABASE_URL;
 // console.log("DB URL: " + db_url);
 const pool = new Pool({connectionString: db_url});
 
-function getUserInfoFromDB(user, pass, callback){
+function getUserInfoFromDB(user, callback){
 
    var sql = "SELECT * FROM db_users"
    pool.query(sql, function(err, result){
@@ -18,13 +18,27 @@ function getUserInfoFromDB(user, pass, callback){
       username = data[0].username
       password = data[0].password
      
-      var params = {username: user, password: pass}
+      var params = {username: user}
       
       callback(null, params);
         }  
     );
 }
 
+function getAllRecipes(id, callback){
+    pool.query('SELECT * FROM recipe WHERE user_id = $1', [id] , function(err, result){
+        if (err){
+            console.log("Error in query: ")
+            console.log(err)
+        }
+        var result = {
+            list:result.rows
+        };
+
+    callback(null, result);	
+    }		
+    );
+}
 
 function addUSerInfoToDB(user, pass, callback){
 
@@ -45,5 +59,6 @@ function addUSerInfoToDB(user, pass, callback){
 
 module.exports = {
     getUserInfoFromDB : getUserInfoFromDB,
-    addUSerInfoToDB : addUSerInfoToDB
+    addUSerInfoToDB : addUSerInfoToDB,
+    getAllRecipes : getAllRecipes
 }
